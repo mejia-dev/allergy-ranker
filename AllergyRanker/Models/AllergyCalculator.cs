@@ -1,52 +1,14 @@
 using System.Collections.Generic;
-using System.Linq;
-using System;
 
 namespace AllergyRanker.Models
 {
   public class AllergyCalculator
   {
-    public string Allergen { get; set; }
-    public int score { get; set; }
-
     private static Dictionary<string, int> allergenGuide = new Dictionary<string, int>() { { "cats", 128 }, { "pollen", 64 }, { "chocolate", 32 }, { "tomatoes", 16 }, { "strawberries", 8 }, { "shellfish", 4 }, { "peanuts", 2 }, { "eggs", 1 } };
-
-    public static string[] returnAllergens(int inputNumber)
-    {
-      int allergyScore = inputNumber;
-      List<string> allergenList = new List<string> { };
-      for (int i = 0; i < allergenGuide.Count; i++)
-      {
-        KeyValuePair<string, int> entry = allergenGuide.ElementAt(i);
-        if (allergyScore == 0)
-        {
-          string[] allergenResults = allergenList.ToArray();
-          Console.WriteLine("You're in the if");
-          Console.WriteLine(allergenResults);
-          return allergenResults;
-        }
-        else if (entry.Value <= allergyScore)
-        {
-          allergenList.Add(entry.Key);
-          allergyScore -= entry.Value;
-          string[] remainingAllergens = returnAllergens(allergyScore);
-            allergenList.AddRange(remainingAllergens);
-
-            Console.WriteLine("You're in the else if");
-            Console.WriteLine(string.Join(", ", allergenList));
-            Console.WriteLine(allergyScore);
-            break;
-        }
-      }
-
-      Console.WriteLine("You're outside of the loop");
-      return allergenList.ToArray();
-    }
 
     public static string[] GetAllergens(int inputNumber)
     {
       List<string> allergies = new List<string>();
-
       foreach (KeyValuePair<string, int> entry in allergenGuide)
       {
         if ((inputNumber & allergenGuide[entry.Key]) != 0)
@@ -56,29 +18,8 @@ namespace AllergyRanker.Models
       }
       return allergies.ToArray();
     }
-
   }
-
-  // foreach(KeyValuePair<string, int> entry in allergenGuide)
-  // {
-  //   if input > entry.Value {add entry.key}
-  // }
-
 }
-
-
-// public string CheckType()
-//     {
-//       if ((Side1 > (Side2 + _side3)) || (Side2 > (Side1 + _side3)) || (_side3 > (Side1 + Side2))) 
-//       {
-//         return "not a triangle";
-//       } 
-//       else if ((Side1 != Side2) && ((Side1 != _side3)) && ((Side2 != _side3))) 
-//       {
-//         return "scalene triangle";
-//       }
-//     }
-
 
 // create an array of allergy values from largest to smallest
 // allergy array = [128,64,32,16,8,4,2,1]
@@ -111,10 +52,42 @@ namespace AllergyRanker.Models
 // 1(index) * 2^n
 // */
 
-
+//RECURSIVE ATTEMPT BELOW
 
 // List<string> allergies = new List<string>();
 // foreach (KeyValuePair<string, int> entry in allergenGuide)
 // if (inputNumber & allergenGuide[entry]) != 0)
 //  allergies.Add(entry)
 // return allergies
+
+// public static string[] returnAllergens(int inputNumber)
+// {
+//   int allergyScore = inputNumber;
+//   List<string> allergenList = new List<string> { };
+//   for (int i = 0; i < allergenGuide.Count; i++)
+//   {
+//     KeyValuePair<string, int> entry = allergenGuide.ElementAt(i);
+//     if (allergyScore == 0)
+//     {
+//       string[] allergenResults = allergenList.ToArray();
+//       Console.WriteLine("You're in the if");
+//       Console.WriteLine(allergenResults);
+//       return allergenResults;
+//     }
+//     else if (entry.Value <= allergyScore)
+//     {
+//       allergenList.Add(entry.Key);
+//       allergyScore -= entry.Value;
+//       string[] remainingAllergens = returnAllergens(allergyScore);
+//         allergenList.AddRange(remainingAllergens);
+
+//         Console.WriteLine("You're in the else if");
+//         Console.WriteLine(string.Join(", ", allergenList));
+//         Console.WriteLine(allergyScore);
+//         break;
+//     }
+//   }
+
+//   Console.WriteLine("You're outside of the loop");
+//   return allergenList.ToArray();
+// }
