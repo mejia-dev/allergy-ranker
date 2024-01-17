@@ -89,6 +89,10 @@ d8'          `8b  88  88   `'Ybbd8''  88           `'YbbdP'Y8      Y88'     88  
       Thread.Sleep(700);
       Console.WriteLine("...");
       Thread.Sleep(700);
+      Console.WriteLine("Carry the one...");
+      Thread.Sleep(700);
+      Console.WriteLine("...");
+      Thread.Sleep(700);
       Console.WriteLine("...");
       Console.ForegroundColor = ConsoleColor.Green;
       Console.WriteLine("$2,420.69");
