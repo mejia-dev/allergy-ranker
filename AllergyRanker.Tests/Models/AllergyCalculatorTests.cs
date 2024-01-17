@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AllergyRanker.Models;
+using System;
 
 namespace AllergyRankerTests
   {
@@ -7,10 +8,13 @@ namespace AllergyRankerTests
     public class AllergyCalculatorTests
     {
       [TestMethod]
-      public void ReturnScore_ReturnsANumber_Int()
+      public void returnAllergens_ReturnsAnArray_string()
       {
-        Assert.AreEqual(int,AllergyCalculator.ReturnScore());
+        string[] allergens = AllergyCalculator.returnAllergens(25);
+        Assert.IsInstanceOfType(allergens, typeof(string[]));
       }
+
+      
       
     }
   }
